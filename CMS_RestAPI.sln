@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_RestAPI.MappingLayer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_RestAPI.DataAccessLayer", "CMS_RestAPI.DataAccessLayer\CMS_RestAPI.DataAccessLayer.csproj", "{DDD1BE4C-A586-4D68-9661-32014E468224}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS_RestAPI.UI", "CMS_RestAPI.UI\CMS_RestAPI.UI.csproj", "{2BE0F3FE-8302-44DC-ABF0-9158EEA73A0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DDD1BE4C-A586-4D68-9661-32014E468224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD1BE4C-A586-4D68-9661-32014E468224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDD1BE4C-A586-4D68-9661-32014E468224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE0F3FE-8302-44DC-ABF0-9158EEA73A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE0F3FE-8302-44DC-ABF0-9158EEA73A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE0F3FE-8302-44DC-ABF0-9158EEA73A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE0F3FE-8302-44DC-ABF0-9158EEA73A0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

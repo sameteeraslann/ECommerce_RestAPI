@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using CMS_RestAPI.EntityLayer.Entities.Concrete;
+using CMS_RestAPI.UI.Models.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CMS_RestAPI.DataAccessLayer.Mapper
+namespace CMS_RestAPI.UI.Mapper
 {
-    public class CategoryMapper:Profile
+    public class CategoryMapper: Profile
     {
         public CategoryMapper() => CreateMap<Category, CategoryDTO>().ReverseMap();
+        
     }
 }

@@ -1,4 +1,6 @@
+using AutoMapper;
 using CMS_RestAPI.DataAccessLayer.Context;
+using CMS_RestAPI.UI.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +30,10 @@ namespace CMS_RestAPI.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(CategoryMapper));
+            services.AddAutoMapper(typeof(PageMapper));
+            services.AddAutoMapper(typeof(ProductMapper));
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnections")));
 

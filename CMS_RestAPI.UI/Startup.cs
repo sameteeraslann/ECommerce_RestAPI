@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,27 @@ namespace CMS_RestAPI.UI
             services.AddControllers();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnections")));
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("CMS API", new OpenApiInfo()
+                {
+                    Title = "CMS API",
+                    Version = "V.1",
+                    Description = "CMS API",
+                    Contact = new OpenApiContact()
+                    {
+                        Email = "samettteraslan@gmail.com",
+                        Name = "Samet ERASLAN",
+                        Url = new Uri("https://github.com/sameteeraslann")
+                    },
+                    License = new OpenApiLicense()
+                    {
+                        Name = "MIT Licance",
+                        Url = new Uri("https://github.com/sameteeraslann")
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +62,12 @@ namespace CMS_RestAPI.UI
             }
 
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/CMS API/swagger.json", "CMS API");
+            });
 
             app.UseAuthorization();
 

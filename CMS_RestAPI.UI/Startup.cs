@@ -31,6 +31,7 @@ namespace CMS_RestAPI.UI
         {
             services.AddControllers();
 
+            services.AddAutoMapper(typeof(AppUserMapper));
             services.AddAutoMapper(typeof(CategoryMapper));
             services.AddAutoMapper(typeof(PageMapper));
             services.AddAutoMapper(typeof(ProductMapper));

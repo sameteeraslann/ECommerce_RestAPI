@@ -54,7 +54,7 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
 
         public async Task<List<T>> Get(Expression<Func<T, bool>> expression) => await _table.Where(expression).ToListAsync();
 
-      
-
+        public async Task Save() => await _applicationDbContext.SaveChangesAsync();
+ 
     }
 }

@@ -4,6 +4,8 @@ using CMS_RestAPI.EntityLayer.Entities.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +45,16 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
             _applicationDbContext.Entry<T>(entity).State = EntityState.Modified;
             await _applicationDbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> Any(Expression<Func<T, bool>> expression) => await _table.AnyAsync(expression);
+
+        public async Task<T> FindByDefault(Expression<Func<T, bool>> expression) => await _table.FirstAsync(expression);
+
+        public async Task<T> FirstOrDefault(Expression<Func<T, bool>> expression) => await _table.Where(expression).FirstOrDefaultAsync();
+
+        public async Task<List<T>> Get(Expression<Func<T, bool>> expression) => await _table.Where(expression).ToListAsync();
+
+      
 
     }
 }

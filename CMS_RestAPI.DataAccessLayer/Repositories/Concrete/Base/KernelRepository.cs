@@ -44,6 +44,7 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
         public async Task Update(T entity)
         {
             _applicationDbContext.Entry<T>(entity).State = EntityState.Modified;
+            
             await Save();
         }
 

@@ -11,8 +11,6 @@ namespace CMS_RestAPI.UI.Mapper
     public class AppUserMapper :Profile
     {
         public AppUserMapper() => CreateMap<AppUser, AppUserDTO>().ReverseMap();
-        {
-
-        }
+        
     }
 }

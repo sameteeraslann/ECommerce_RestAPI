@@ -29,9 +29,9 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
             await _applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(T entity)
+        public async Task Delete(T entitiy)
         {
-            _table.Remove(entity);
+            _applicationDbContext.Entry(entitiy).State = EntityState.Deleted;
             await _applicationDbContext.SaveChangesAsync();
         }
 

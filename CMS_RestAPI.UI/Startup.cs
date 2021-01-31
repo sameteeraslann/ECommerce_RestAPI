@@ -75,6 +75,8 @@ namespace CMS_RestAPI.UI
                 options.IncludeXmlComments(xmlCommnetFullPath);
             });
 
+            // API'ýn sahib olduðu yetenekler yani Controller içerisindeki Action Metodlarýmýza yazdýðýmýz summary yani özet bilgilerin Swagger UI aracýnda gözükmesi için yapýlan bir konfigurasyon.
+
             //var appSettingsSection = Configuration.GetSection("AppSettings");
             //services.Configure<AppSettings>(appSettingsSection);
 
@@ -93,12 +95,18 @@ namespace CMS_RestAPI.UI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            //CMS Rest API farklý bir domainde, API'ye request atan web siteside haliyle farklý bir domainde olacaktýr. Farklý origin'lerde kaynaklarda bulunan bu web platformlarýn saðlýklý bir þekilde iletiþim kurmasý için API'ye request atan web sitelerini tanýtmamýz gerekmektedir. Bunun için hiyerarþik olarak bulunan "UseCors" middleware kullanýlacaktýr. Özellikle veritabanýna varlýk insert etmek istediðimizde yada var olan bir valýk üzerinde deðiþiklik yapmak istediðimizde atacaðýmýz requestlerin baþarýlý olmasý için aþaðýda iþlemin yapýlmasý gerekmektedir.
             app.UseCors(options => options
-                 .AllowAnyOrigin()
-                  .AllowAnyMethod()
-                   .AllowAnyHeader()
-                 );
- 
+                .AllowAnyOrigin() // Request atan web projesinin bulunduðu domain bilgisi, bu method içerisinde herhangi bir domain bilgisi verilmezse world wide web içerisinde herhangi bir alan adýna sahip web sitesi bize request atabilir.
+                .AllowAnyMethod() // Hangi methodlara izin verildiði
+                .AllowAnyHeader() // Hangi request header'larýna izin verildiði adým adým burdaki middleware'da titiz bir þekilde belirlenir.
+
+            //Standart .Net içerisinde de ayný mantýk bulunmaktadýr. Standart .Net içerisinde Web Config içerisinde genel ayarlar yapýlabilindiði gibi Controller içerisine girerek action methodlara attribute olarakta bu origin bilgileri verile bilir. Method bu ayarlar verilebilir.
+
+            //Asp .Net Core için [EnableCors] attribute vasýtasýyla yapýlýr.
+
+            //Bu global ayarlar controller bazýnda ve action method bazýnda yapýlmaktadýr.
+            );
 
              app.UseSwagger();
             app.UseSwaggerUI(options =>

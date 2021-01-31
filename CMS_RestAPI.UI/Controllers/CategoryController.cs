@@ -78,10 +78,11 @@ namespace CMS_RestAPI.UI.Controllers
         ///     Enum:[ 1, 2, 3 ]
         /// </param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost] // Eklemek için kullanılır
         public async Task<ActionResult<Category>> PostCategory(CategoryDTO  categoryDTO)
         {
             var categoryObject = _mapper.Map<Category>(categoryDTO);
+            await _categoryrepo.Add(categoryObject);
             await _categoryrepo.Save();
             return CreatedAtAction(nameof(GetCategories), categoryDTO);
         }
@@ -93,7 +94,7 @@ namespace CMS_RestAPI.UI.Controllers
         /// <param name="id"></param>
         /// <param name="category"></param>
         /// <returns></returns>
-        [HttpPut("{id}",Name ="PutCategory")]
+        [HttpPut("{id}",Name ="PutCategory")] //Güncellemek için kullanılır
         public async Task<ActionResult<Category>> PutCategory(int id,CategoryDTO categoryDTO)
         {
             if (id != categoryDTO.Id)

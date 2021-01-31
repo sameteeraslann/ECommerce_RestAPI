@@ -18,7 +18,7 @@
             <param name="categorySlug"></param>
             <returns></returns>
         </member>
-        <member name="M:CMS_RestAPI.UI.Controllers.CategoryController.PostCategory(CMS_RestAPI.EntityLayer.Entities.Concrete.Category)">
+        <member name="M:CMS_RestAPI.UI.Controllers.CategoryController.PostCategory(CMS_RestAPI.UI.Models.DTOs.CategoryDTO)">
             <summary>
             This method help to you insert category into database
             </summary>
@@ -33,7 +33,7 @@
             </param>
             <returns></returns>
         </member>
-        <member name="M:CMS_RestAPI.UI.Controllers.CategoryController.PutCategory(System.Int32,CMS_RestAPI.EntityLayer.Entities.Concrete.Category)">
+        <member name="M:CMS_RestAPI.UI.Controllers.CategoryController.PutCategory(System.Int32,CMS_RestAPI.UI.Models.DTOs.CategoryDTO)">
             <summary>
             
             </summary>

@@ -3,6 +3,7 @@ using CMS_RestAPI.DataAccessLayer.Context;
 using CMS_RestAPI.DataAccessLayer.Repositories.Concrete.EntityTypeRepositories;
 using CMS_RestAPI.DataAccessLayer.Repositories.Interfaces.EntityTypeRepositories;
 using CMS_RestAPI.UI.Mapper;
+using CMS_RestAPI.UI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,8 +36,9 @@ namespace CMS_RestAPI.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddControllers();
+           
             services.AddRouting(x => x.LowercaseUrls = true);
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapper(typeof(AppUserMapper));
@@ -77,11 +79,11 @@ namespace CMS_RestAPI.UI
 
             // API'ýn sahib olduðu yetenekler yani Controller içerisindeki Action Metodlarýmýza yazdýðýmýz summary yani özet bilgilerin Swagger UI aracýnda gözükmesi için yapýlan bir konfigurasyon.
 
-            //var appSettingsSection = Configuration.GetSection("AppSettings");
-            //services.Configure<AppSettings>(appSettingsSection);
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
 
-            //var appSettings = appSettingsSection.Get<AppSettings>();
-            //var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecretKey);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,24 +110,20 @@ namespace CMS_RestAPI.UI
             //Bu global ayarlar controller bazýnda ve action method bazýnda yapýlmaktadýr.
             );
 
-             app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/CMS API/swagger.json", "CMS API");
-            });
+            app.UseSwagger();
+            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/CMS API/swagger.json", "CMS API"); });
 
             app.UseAuthentication();
+
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-              );
-
-                
+                endpoints.MapControllers();
             });
+
+
         }
     }
 }

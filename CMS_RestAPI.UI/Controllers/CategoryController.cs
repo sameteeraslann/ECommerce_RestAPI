@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace CMS_RestAPI.UI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -28,6 +29,7 @@ namespace CMS_RestAPI.UI.Controllers
             _mapper = mapper;
         }
 
+        //[HttpGet("{id:int?}")]
         [HttpGet]
         public async Task<IEnumerable<Category>> GetCategories() => await _categoryrepo.Get(x => x.Status != Status.Passive);
 

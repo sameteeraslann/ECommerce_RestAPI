@@ -83,7 +83,6 @@ namespace CMS_RestAPI.UI.Controllers
         {
             var categoryObject = _mapper.Map<Category>(categoryDTO);
             await _categoryrepo.Add(categoryObject);
-            await _categoryrepo.Save();
             return CreatedAtAction(nameof(GetCategories), categoryDTO);
         }
 

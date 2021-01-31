@@ -26,13 +26,14 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
         public async Task Add(T entity)
         {
             await _table.AddAsync(entity);
-            await _applicationDbContext.SaveChangesAsync();
+            await Save();
+
         }
 
         public async Task Delete(T entitiy)
         {
             _applicationDbContext.Entry(entitiy).State = EntityState.Deleted;
-            await _applicationDbContext.SaveChangesAsync();
+             await Save();
         }
 
         public async Task<List<T>> GetAll() => await _table.ToListAsync();
@@ -43,7 +44,7 @@ namespace CMS_RestAPI.DataAccessLayer.Repositories.Concrete.Base
         public async Task Update(T entity)
         {
             _applicationDbContext.Entry<T>(entity).State = EntityState.Modified;
-            await _applicationDbContext.SaveChangesAsync();
+            await Save();
         }
 
         public async Task<bool> Any(Expression<Func<T, bool>> expression) => await _table.AnyAsync(expression);
